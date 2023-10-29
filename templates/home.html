@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/android-chrome-192x192.png' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img//apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img//favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+    <link rel="stylesheet" href="{% static 'css/adwa.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <title>ባስአውቆ</title>
+</head>
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "ebrima", sans-serif}
+    </style>
+    <body class="adwa-light-grey adwa-content" style="max-width:1600px">
+    
+    <!-- Sidebar/menu -->
+    <nav class="adwa-sidebar adwa-collapse adwa-white adwa-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+      <div class="adwa-container">
+        <a href="#" onclick="adwa_close()" class="adwa-hide-large adwa-right adwa-jumbo adwa-padding adwa-hover-grey" title="close menu">
+          <i class="fa fa-remove"></i>
+        </a>
+        <img src="{% static 'img/output-onlinepngtools.png' %}"  class="adwa-round adwa-image"><br><br>
+      </div>
+      <div class="adwa-bar-block">
+        <a href="/" onclick="adwa_close()" class="adwa-bar-item adwa-button adwa-padding adwa-hover-red"><i class="fa fa-home fa-fw adwa-margin-right"></i>ዋና ገጽ</a> 
+        <a href="#about" onclick="adwa_close()" class="adwa-bar-item adwa-button adwa-padding adwa-hover-red"><i class="fa fa-user fa-fw adwa-margin-right"></i>ስለ እኛ</a> 
+        <a href="#contact" onclick="adwa_close()" class="adwa-bar-item adwa-button adwa-padding adwa-hover-red"><i class="fa fa-envelope fa-fw adwa-margin-right"></i>እኛን ለማግኘት</a>
+      </div>
+    </nav>
+    
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="adwa-overlay adwa-hide-large adwa-animate-opacity" onclick="adwa_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    
+    <!-- !PAGE CONTENT! -->
+    <div class="adwa-main" style="margin-left:300px">
+    
+      <!-- Header -->
+      <header id="portfolio">
+        <a href="/"><img src="{% static 'img/output-onlinepngtools.png' %}" style="width:65px;" class="adwa-circle adwa-right adwa-margin adwa-hide-large adwa-hover-opacity"></a>
+        <span class="adwa-button adwa-hide-large adwa-xxlarge adwa-hover-text-grey" onclick="adwa_open()"><i class="fa fa-bars"></i></span>
+        <div class="adwa-container">
+        <h1><b><span class="adwa-text-red">ባስ</span> <span  class="adwa-text-brown">አውቆ</span></b></h1>
+        <div class="adwa-section adwa-bottom-border adwa-padding-16">
+          <form action="searchBusCatagory" method="get">
+            <input type="text" name="searched" class="adwa-input adwa-twothird adwa-light-grey adwa-text-brown" id="searchbar" placeholder="ባስዎን ይፈልጉ ...">
+            <input type="submit" value="Search" class="adwa-button adwa-quarter adwa-rest adwa-red adwa-right">
+            <br>
+          </form>
+          <br>
+        </div>
+        </div>
+      </header>
+      
+      <!-- First Photo Grid-->
+      <div class="adwa-row-padding">
+        {% for catagories in page_obj %}
+        <div class="adwa-ebrima adwa-third adwa-container adwa-margin-bottom">
+          <img src="{{ catagories.Image.url }}" alt="{{catagories.Name}}" style="width:100%" class="adwa-hover-opacity">
+          <div class="adwa-ebrima adwa-container adwa-white">
+            <p><b>{{catagories.Name}}</b></p>
+            <p>{{catagories.Description}}</p>
+          </div>
+        </div>
+        {% empty %}
+        <div class="adwa-ebrima adwa-container adwa-white adwa-center">
+            <br>
+            <h2><b> <i class="fa fa-warning"></i> Nothing Found</b></h2>
+            <br>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <!-- Pagination -->
+      <div class="adwa-center adwa-padding-32">
+        <p>Showing page {{page_obj.number}} of {{page_obj.paginator.num_pages}} </p>
+        <div class="adwa-bar adwa-border adwa-border-red">
+        {% if page_obj.has_previous %}
+          <a {% if page_obj.number == 1 %} class="adwa-brown" {% endif %} href="?page=1" class="adwa-bar-item adwa-button adwa-hover-black">1</a>
+          <a href="?page={{ page_obj.previous_page_number }}" class="adwa-bar-item adwa-button adwa-border-right adwa-border-red"><i class="fa fa-arrow-left"></i></a>
+          {% endif %}
+
+          {% if page_obj.has_next %}
+          <a href="?page={{page_obj.next_page_number}}" class="adwa-bar-item adwa-button adwa-hover-black"><i class="fa fa-arrow-right"></i></a>
+          <a href="?page={{page_obj.next_paginator.num_pages}}" class="adwa-bar-item adwa-button adwa-hover-black">{{page_obj.paginator.num_pages}}</a>
+          {% endif %}
+        </div>
+      </div>
+    
+      
+    
+      <div class="adwa-container adwa-padding-large" style="margin-bottom:32px">
+        <h1 id="about"><b><span class="adwa-text-red">ስለ</span> <span  class="adwa-text-brown">እኛ</span></b></h1>
+        <p>ባስአውቆ የኢትዮጵያ የህዝብ ማመላለሻ አውቶቡሶች መነሻና መድረሻቸውን ጨምሮ መረጃ የሚያቀርብ ድረ-ገጽ ነው። ድረ-ገጹን የፈጠረው በወጣት ኢትዮጵያውያን የስራ ፈጣሪዎች ቡድን የህዝብ ትራንስፖርትን ተደራሽ እና ቀልጣፋ ለማድረግ ከፍተኛ ፍላጎት ያላቸው ናቸው።
+
+            ባስአውቆ ለሀገር ውስጥም ሆነ ለቱሪስቶች ጠቃሚ ግብአት ነው። የአካባቢው ነዋሪዎች ድረ-ገጹን በመጠቀም ወደ መድረሻቸው ለመድረስ የሚሄዱትን ምርጥ የአውቶቡስ መስመሮችን ለማግኘት ሲችሉ ቱሪስቶች ድህረ ገጹን ተጠቅመው በኢትዮጵያ ዙሪያ የመጓጓዣ እቅድ ማውጣት ይችላሉ።</p>
+        <hr>
+      </div>
+
+      <div class="adwa-container adwa-padding-large" style="margin-bottom:32px">
+        <h1 id="contact"><b><span class="adwa-text-red">እኛን</span> <span  class="adwa-text-brown">ለማግኘት</span></b></h1>
+        <p>ባስአውቆ የኢትዮጵያ የህዝብ ማመላለሻ አውቶቡሶች መነሻና መድረሻቸውን ጨምሮ መረጃ የሚያቀርብ ድረ-ገጽ ነው። ድረ-ገጹን የፈጠረው በወጣት ኢትዮጵያውያን የስራ ፈጣሪዎች ቡድን የህዝብ ትራንስፖርትን ተደራሽ እና ቀልጣፋ ለማድረግ ከፍተኛ ፍላጎት ያላቸው ናቸው።
+
+            ባስአውቆ ለሀገር ውስጥም ሆነ ለቱሪስቶች ጠቃሚ ግብአት ነው። የአካባቢው ነዋሪዎች ድረ-ገጹን በመጠቀም ወደ መድረሻቸው ለመድረስ የሚሄዱትን ምርጥ የአውቶቡስ መስመሮችን ለማግኘት ሲችሉ ቱሪስቶች ድህረ ገጹን ተጠቅመው በኢትዮጵያ ዙሪያ የመጓጓዣ እቅድ ማውጣት ይችላሉ።</p>
+        <hr>
+      </div>
+
+      <div class="adwa-brown adwa-center adwa-padding">
+        <!-- Footer -->
+<footer class="adwa-theme-d1 adwa-center">
+    <h4>Follow Us</h4>
+    <a class="adwa-button adwa-large adwa-teal" href="javascript:void(0)" title="Facebook"><i class="fa fa-facebook"></i></a>
+    <a class="adwa-button adwa-large adwa-teal" href="javascript:void(0)" title="Twitter"><i class="fa fa-twitter"></i></a>
+    <a class="adwa-button adwa-large adwa-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a>
+    <a class="adwa-button adwa-large adwa-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-instagram"></i></a>
+    <a class="adwa-button adwa-large adwa-teal adwa-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+  </footer>
+      </div>
+    
+    <!-- End page content -->
+    </div>
+    
+    <script>
+    // Script to open and close sidebar
+    function adwa_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+     
+    function adwa_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+    </script>
+    
+    </body>
+</html>
