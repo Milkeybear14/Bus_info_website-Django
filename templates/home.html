@@ -19,7 +19,7 @@
     <body class="adwa-light-grey adwa-content" style="max-width:1600px">
     
     <!-- Sidebar/menu -->
-    <nav class="adwa-sidebar adwa-collapse adwa-white adwa-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <nav class="adwa-sidebar adwa-pale-red adwa-collapse adwa-white adwa-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
       <div class="adwa-container">
         <a href="#" onclick="adwa_close()" class="adwa-hide-large adwa-right adwa-jumbo adwa-padding adwa-hover-grey" title="close menu">
           <i class="fa fa-remove"></i>
@@ -27,9 +27,9 @@
         <img src="{% static 'img/output-onlinepngtools.png' %}"  class="adwa-round adwa-image"><br><br>
       </div>
       <div class="adwa-bar-block">
-        <a href="/" onclick="adwa_close()" class="adwa-bar-item adwa-button adwa-padding adwa-hover-red"><i class="fa fa-home fa-fw adwa-margin-right"></i>ዋና ገጽ</a> 
-        <a href="#about" onclick="adwa_close()" class="adwa-bar-item adwa-button adwa-padding adwa-hover-red"><i class="fa fa-user fa-fw adwa-margin-right"></i>ስለ እኛ</a> 
-        <a href="#contact" onclick="adwa_close()" class="adwa-bar-item adwa-button adwa-padding adwa-hover-red"><i class="fa fa-envelope fa-fw adwa-margin-right"></i>እኛን ለማግኘት</a>
+        <a href="/" onclick="adwa_close()" class="adwa-bar-item adwa-text-red adwa-button adwa-padding adwa-hover-red"><i class="fa fa-home fa-fw adwa-margin-right"></i>ዋና ገጽ</a> 
+        <a href="#about" onclick="adwa_close()" class="adwa-bar-item adwa-text-red adwa-button adwa-padding adwa-hover-red"><i class="fa fa-user fa-fw adwa-margin-right"></i>ስለ እኛ</a> 
+        <a href="#contact" onclick="adwa_close()" class="adwa-bar-item adwa-text-red adwa-button adwa-padding adwa-hover-red"><i class="fa fa-envelope fa-fw adwa-margin-right"></i>እኛን ለማግኘት</a>
       </div>
     </nav>
     
@@ -43,13 +43,13 @@
       <header id="portfolio">
         <a href="/"><img src="{% static 'img/output-onlinepngtools.png' %}" style="width:65px;" class="adwa-circle adwa-right adwa-margin adwa-hide-large adwa-hover-opacity"></a>
         <span class="adwa-button adwa-hide-large adwa-xxlarge adwa-hover-text-grey" onclick="adwa_open()"><i class="fa fa-bars"></i></span>
-        <div class="adwa-container">
+        <div class="adwa-container adwa-pale-red">
         <h1><b><span class="adwa-text-red">ባስ</span> <span  class="adwa-text-brown">አውቆ</span></b></h1>
-        <div class="adwa-section adwa-bottom-border adwa-padding-16">
+        <div class="adwa-section adwa-bottom-border">
           <form action="searchBusCatagory" method="get">
             <input type="text" name="searched" class="adwa-input adwa-twothird adwa-light-grey adwa-text-brown" id="searchbar" placeholder="ባስዎን ይፈልጉ ...">
             <input type="submit" value="Search" class="adwa-button adwa-quarter adwa-rest adwa-red adwa-right">
-            <br>
+            <br><br>
           </form>
           <br>
         </div>
@@ -64,6 +64,7 @@
           <div class="adwa-ebrima adwa-container adwa-white">
             <p><b>{{catagories.Name}}</b></p>
             <p>{{catagories.Description}}</p>
+            <a href="busses/{{catagories.id}}"><button class="adwa-button adwa-hover-red adwa-text-red adwa-border adwa-border-red">{{catagories.Name}}</button></a>
           </div>
         </div>
         {% empty %}
@@ -109,7 +110,7 @@
         <hr>
       </div>
 
-      <div class="adwa-brown adwa-center adwa-padding">
+      <div class="adwa-pale-red adwa-center adwa-padding">
         <!-- Footer -->
 <footer class="adwa-theme-d1 adwa-center">
     <h4>Follow Us</h4>

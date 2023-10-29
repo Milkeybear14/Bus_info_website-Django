@@ -30,8 +30,9 @@ def searchBusCatagory(request):
     }
     return render(request, 'home.html', context)
 
-def busses(request, slug):
-    bus = Bus.objects.filter(Mame__exact = slug)
+def busses(request, id):
+    bus = Bus.objects.filter(Catagory_id__exact = id)
     context = {
         'busses':bus
     }
+    return render(request, 'busses.html', context)
